@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
     ResponsiveContainer,
-    LineChart,
     Line,
     CartesianGrid,
     XAxis,
@@ -9,7 +8,6 @@ import {
     Legend,
     Tooltip,
     ComposedChart,
-    Area,
     Bar,
 } from "recharts";
 
@@ -97,7 +95,7 @@ export default function MyBarChart({ data, inputValue }) {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Legend verticalAlign="top" height={36} />
-                    <Tooltip />
+                    <Tooltip formatter={(value) => new Intl.NumberFormat('en').format(value)}/>
                 </ComposedChart>
             </ResponsiveContainer>
         </div>

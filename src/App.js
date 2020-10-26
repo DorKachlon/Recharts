@@ -54,8 +54,8 @@ export default function App() {
                 <Selector countries={countries} setInputValue={setInputValue} />
             </div>
             {inputValue ? (
-                // <MyBarChart data={data} inputValue={inputValue} />
-                <MyLineChart data={data} inputValue={inputValue} />
+                <MyBarChart data={data} inputValue={inputValue} />
+                // <MyLineChart data={data} inputValue={inputValue} />
             ) : (
                 <h2 className="body">No country selected</h2>
             )}
