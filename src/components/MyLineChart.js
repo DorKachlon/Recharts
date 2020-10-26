@@ -15,19 +15,18 @@ export default function MyLineChart({ data, inputValue }) {
     const [countryName, setCountryName] = useState("");
     useEffect(() => {
         if (inputValue) {
-            const index = data.findIndex((obj) => obj["Country/Region"] === inputValue.label);
-            const obj = {...data[index]};
-            setCountryName(obj["Country/Region"]);
-            delete obj["Country/Region"];
-            delete obj["Lat"];
-            delete obj["Long"];
-            delete obj["Province/State"];
-            let array = [];
-            console.log(obj);
-            for (const property in obj) {
-                array = [...array, { date: property, value: obj[property] }];
-            }
-            setDataOfCountry(array);
+                const index = data.findIndex((obj) => obj["Country/Region"] === inputValue.label);
+                const obj = {...data[index]};
+                setCountryName(obj["Country/Region"]);
+                delete obj["Country/Region"];
+                delete obj["Lat"];
+                delete obj["Long"];
+                delete obj["Province/State"];
+                let array = [];
+                for (const property in obj) {
+                    array = [...array, { date: property, value: Number(obj[property]) }];
+                }
+                setDataOfCountry(array);
         }
     }, [inputValue, data]);
 
@@ -41,9 +40,9 @@ export default function MyLineChart({ data, inputValue }) {
                     <Line name={countryName} type="monotone" dataKey="value" stroke="red" />
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="date" />
-                    <YAxis dataKey="value" type="category" />
+                    <YAxis  />
                     <Legend verticalAlign="top" height={36} />
-                    <Tooltip formatter={(value) => new Intl.NumberFormat("en").format(value)} />
+                    <Tooltip formatter={(value) => new Intl.NumberFormat('en').format(value)}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>

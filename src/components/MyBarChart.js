@@ -44,7 +44,6 @@ export default function MyBarChart({ data, inputValue }) {
             delete obj["Lat"];
             delete obj["Long"];
             delete obj["Province/State"];
-            console.log(obj);
             let objOfMonth = {};
             for (const property in obj) {
                 const monthNumber = property.split("/")[0];
@@ -55,14 +54,12 @@ export default function MyBarChart({ data, inputValue }) {
                     : [obj[property]];
                 //     array = [...array, { date: property, value: obj[property] }];
             }
-            console.log(objOfMonth);
             let numberPeerMonth = [];
             for (const monthNumber in objOfMonth) {
                 const arrayOfMonth = objOfMonth[monthNumber];
                 const LastNumberAtMonth = arrayOfMonth[arrayOfMonth.length - 1];
                 numberPeerMonth.push(LastNumberAtMonth);
             }
-            console.log(numberPeerMonth);
             let differnceBetweenMonths = [];
             for (let index = 0; index < numberPeerMonth.length; index++) {
                 if (index > 0) {
