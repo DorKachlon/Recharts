@@ -41,7 +41,7 @@ export default function Selector({ countries, setInputValue }) {
                             variant="outlined"
                             inputProps={{
                                 ...params.inputProps,
-                                // autoComplete: "new-password", // disable autocomplete and autofill
+                                autoComplete: "new-password",
                             }}
                         />
                     )}

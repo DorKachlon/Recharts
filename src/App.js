@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import Selector from "./Selector";
-import Chart from "./Chart";
+import Selector from "./components/Selector";
+import MyLineChart from "./components/MyLineChart";
+import MyBarChart from "./components/MyBarChart";
 
 function csvJSON(csv) {
     var lines = csv.split("\n");
@@ -22,7 +23,6 @@ function csvJSON(csv) {
 export default function App() {
     const [data, setData] = useState([]);
     const [countries, setCountries] = useState([]);
-    // const [currentCountry, setCurrentCountry] = useState();
     const [inputValue, setInputValue] = useState();
 
     useEffect(() => {
@@ -47,7 +47,6 @@ export default function App() {
         }
         fetchData();
     }, []);
-    // console.log(countries);
     return (
         <div>
             <div className="header">
@@ -55,18 +54,11 @@ export default function App() {
                 <Selector countries={countries} setInputValue={setInputValue} />
             </div>
             {inputValue ? (
-                <Chart data={data} inputValue={inputValue} />
+                // <MyBarChart data={data} inputValue={inputValue} />
+                <MyLineChart data={data} inputValue={inputValue} />
             ) : (
                 <h2 className="body">No country selected</h2>
             )}
         </div>
     );
 }
-
-// 10/23/20: "40687"
-// 10/24/20: "40768"
-// 10/25/20: "40833"
-// Country/Region: "Afghanistan"
-// Lat: "33.93911"
-// Long: "67.709953"
-// Province/State: ""

@@ -10,12 +10,11 @@ import {
     Tooltip,
 } from "recharts";
 
-export default function Chart({ data, inputValue }) {
+export default function MyLineChart({ data, inputValue }) {
     const [dataOfCountry, setDataOfCountry] = useState([]);
     const [countryName, setCountryName] = useState("");
     useEffect(() => {
         if (inputValue) {
-            // if (inputValue.label) {
                 const index = data.findIndex((obj) => obj["Country/Region"] === inputValue.label);
                 const obj = data[index];
                 setCountryName(obj["Country/Region"]);
@@ -24,12 +23,11 @@ export default function Chart({ data, inputValue }) {
                 delete obj["Long"];
                 delete obj["Province/State"];
                 let array = [];
+                console.log(obj);
                 for (const property in obj) {
                     array = [...array, { date: property, value: obj[property] }];
                 }
-                debugger;
                 setDataOfCountry(array);
-            // }
         }
     }, [inputValue, data]);
 
