@@ -36,8 +36,9 @@ export default function MyBarChart({ data, inputValue }) {
     //תומך רק לשנת 2020
     useEffect(() => {
         if (inputValue) {
+            debugger
             const index = data.findIndex((obj) => obj["Country/Region"] === inputValue.label);
-            const obj = data[index];
+            const obj = {...data[index]};
             setCountryName(obj["Country/Region"]);
             delete obj["Country/Region"];
             delete obj["Lat"];

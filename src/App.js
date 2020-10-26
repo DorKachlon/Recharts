@@ -4,6 +4,7 @@ import axios from "axios";
 import Selector from "./components/Selector";
 import MyLineChart from "./components/MyLineChart";
 import MyBarChart from "./components/MyBarChart";
+import Button from "@material-ui/core/Button";
 
 function csvJSON(csv) {
     var lines = csv.split("\n");
@@ -24,7 +25,7 @@ export default function App() {
     const [data, setData] = useState([]);
     const [countries, setCountries] = useState([]);
     const [inputValue, setInputValue] = useState();
-
+    const [chartType, setChartType] = useState("line");
     useEffect(() => {
         async function fetchData() {
             try {
@@ -47,15 +48,28 @@ export default function App() {
         }
         fetchData();
     }, []);
+
+    const changeChart = (type) => {
+        setChartType(type);
+    };
     return (
         <div>
             <div className="header">
                 <h1 className="title">Coronavirus Worldwide</h1>
                 <Selector countries={countries} setInputValue={setInputValue} />
+                <Button variant="contained" onClick={() => changeChart("bar")}>
+                    Bar Chart
+                </Button>
+                <Button variant="contained" onClick={() => changeChart("line")}>
+                    Line Chart
+                </Button>
             </div>
             {inputValue ? (
-                <MyBarChart data={data} inputValue={inputValue} />
-                // <MyLineChart data={data} inputValue={inputValue} />
+                chartType === "line" ? (
+                    <MyLineChart data={data} inputValue={inputValue} />
+                ) : (
+                    <MyBarChart data={data} inputValue={inputValue} />
+                )
             ) : (
                 <h2 className="body">No country selected</h2>
             )}
