@@ -36,7 +36,6 @@ export default function MyBarChart({ data, inputValue }) {
     //תומך רק לשנת 2020
     useEffect(() => {
         if (inputValue) {
-            debugger
             const index = data.findIndex((obj) => obj["Country/Region"] === inputValue.label);
             const obj = {...data[index]};
             setCountryName(obj["Country/Region"]);
@@ -47,12 +46,9 @@ export default function MyBarChart({ data, inputValue }) {
             let objOfMonth = {};
             for (const property in obj) {
                 const monthNumber = property.split("/")[0];
-                // let newObj = {};
-                // newObj[property] = obj[property];
                 objOfMonth[monthNumber] = objOfMonth[monthNumber]
                     ? [...objOfMonth[monthNumber], obj[property]]
                     : [obj[property]];
-                //     array = [...array, { date: property, value: obj[property] }];
             }
             let numberPeerMonth = [];
             for (const monthNumber in objOfMonth) {
